@@ -7,8 +7,8 @@ class Model extends Base {
     public $sql;
     public $where="";
     public $group="";
-    public $limit="1";
-    public $offset="0";
+    public $limit=1;
+    public $offset=0;
     public $database="";
     // public $action;
     public $order=null;
@@ -99,14 +99,14 @@ class Model extends Base {
          $this->offset=(int)$offset;
     }
     //原始sql查询
-    function query(){
-
+    function query($sql){
+        $this->log($sql);
     }
     //组装最新执行的sql
     function get($field="*"){
         //执行的sql
         $this->sql="select ".$field." from ".$this->getTableName().' '.$this->where.$this->group.' order by '.$this->order.' offset '.(int)$this->offset.' limit '.(int)$this->limit;
-        echo $this->sql;
+        $this->query($this->sql);
     }
     function sql(){
         
@@ -116,8 +116,9 @@ class Model extends Base {
         .$this->where.$this->group.' order by '.$this->order.' offset '.(int)$this->offset.' limit '.(int)$this->limit;
 
     }
-    //应用层sqlmap
-    function log(){
-
+    //应用层sqlmap sql写入日志
+    function log($sql){
+        self::$logger->log('sql',$sql);
+        self::$lastsql=$sql;
     }
 }

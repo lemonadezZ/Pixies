@@ -9,6 +9,7 @@ class Base {
 	static $controller=null;
 	static $action=null;
 	static $path=null;
+	static $lastsql="";
 	function getInstance(){
 		
 	}
