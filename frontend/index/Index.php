@@ -18,9 +18,12 @@ class Index extends Controller {
 	// function log(){
 	// 	echo "log";
 	// }
+	//@
 	function index(){
-		$this->assign('title','Page');
-		return $this->display();
+		$user=new \Model\User();
+		echo $user->where("`aaa` > 11111111")->order("aaa")->group("name")->get();
+		// $this->assign('title','Page');
+		// return $this->display();
 	}
 	
 }

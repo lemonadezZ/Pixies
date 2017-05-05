@@ -2,6 +2,8 @@
 namespace Core;
 
 class Router extends Base{
+
+	//处理路由
 	function handle(){
 		$path=$this->getPath();
 		$p=explode('/',$path);
