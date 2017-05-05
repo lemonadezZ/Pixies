@@ -1,11 +1,11 @@
 <?php
-namespace Api\v1;
+namespace Api\V1;
 
-use Core\Controller;
+use Api;
 
-class Index extends Controller {
+class Index extends \Api\Base {
 	function index(){
-		echo json_encode(['success']);
+		return $this->fail();
 	}
 	
 }

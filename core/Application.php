@@ -8,7 +8,7 @@ class Application extends Base {
 		$this->initLogger();
 		$this->initRouter();
 		self::$logger->info("Æô¶¯·şÎñÆ÷");
-		self::$router->handle();
+		return self::$router->handle();
 	}
 
 }

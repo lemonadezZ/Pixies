@@ -13,7 +13,7 @@ class Router extends Base{
 		$controller=array_pop($p);
 		$this->setController($controller);
 		$namespace=implode('\\',$p);
-		$class='\\'.$namespace.'\\'.$controller;
+		$class=$namespace.'\\'.$controller;
 		$index=new $class();
 		return $index->$action();
 	}
