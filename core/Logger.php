@@ -1,7 +1,7 @@
 <?php 
 namespace Core;
 
-class Logger {
+class Logger extends Base {
 	function handle(){
 
 	}
@@ -9,8 +9,16 @@ class Logger {
 		
 	}
 	function log($segment,$log){
-		$t=date('Y-m-d H:i:s',time());
+		$time=time();
+		$t=date('Y-m-d H:i:s',$time);
         $rid=$_SERVER['REQUEST_TIME_FLOAT'];
-        //echo "[ $rid ] [ $t ] [$segment] :$log";
+		$file_dir=self::$conf['application']['log_dir'].'/'.$segment;
+		$file_path=$file_dir.'/'.date('Y-m-d').'.log';
+		// check dir
+		if(!file_exists($file_dir)){
+			mkdir($file_dir,777,true);
+		}
+		$logstr="[ $rid ] [ $t ] [$segment] :$log\r\n";
+		file_put_contents($file_path,$logstr,FILE_APPEND);
 	}
 }

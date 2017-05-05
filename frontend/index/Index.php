@@ -21,8 +21,8 @@ class Index extends Controller {
 	//@
 	function index(){
 		$user=new \Model\User();
-		 $user->where("`aaa` > 11111111")->where("`aaa` > 11111111")->order("aaa")->group("name")->get();
-		 echo self::$lastsql;
+		$user->where("`id` > 10")->order("aaa")->group("name")->get();
+		echo self::$lastsql;
 		// $this->assign('title','Page');
 		// return $this->display();
 	}
