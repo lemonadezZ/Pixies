@@ -1,0 +1,18 @@
+{
+    "name": "jingz/pixies",
+    "authors": [
+        {
+            "name": "jingzhixiang",
+            "email": "jingzhixiang@aprbrother.com"
+        }
+    ],
+    "require": {},
+	"autoload": {
+    "psr-4": {
+      "Backend\\": "backend/",
+	  "Frontend\\": "frontend/",
+      "Api\\":"api/",
+	  "Core\\":"core/"
+    }
+  }
+}
