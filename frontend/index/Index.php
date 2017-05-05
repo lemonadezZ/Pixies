@@ -19,7 +19,7 @@ class Index extends Controller {
 	// 	echo "log";
 	// }
 	function index(){
-		$this->assign('title','aaaaaaaa');
+		$this->assign('title','Page');
 		return $this->display();
 	}
 	
