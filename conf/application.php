@@ -5,5 +5,7 @@ return [
 	"appName"=>"Poxies",
 	"cache"=>false,
 	"debug"=>true,
-	"default_path"=>'frontend/index/index/index'
+	"default_path"=>'frontend/index/index/index',
+	"theme_dir"=>__ROOT__.'/theme',
+	"theme"=>'default'
 ];

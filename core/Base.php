@@ -7,6 +7,7 @@ class Base {
 	static $router=null;
 	static $controller=null;
 	static $action=null;
+	static $path=null;
 	function getInstance(){
 		
 	}
