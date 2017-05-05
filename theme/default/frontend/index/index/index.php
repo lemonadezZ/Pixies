@@ -1,2 +1,1 @@
-<?php
-echo $this->title;
+这是什么？
