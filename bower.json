@@ -1,0 +1,17 @@
+{
+  "name": "pixies",
+  "description": "初始化",
+  "main": "index.js",
+  "authors": [
+    "jingzhixiang <jingzhixiang@aprbrother.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/lemonadezZ/Pixies",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

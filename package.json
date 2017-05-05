@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lemonadezZ/Pixies/issues"
   },
-  "homepage": "https://github.com/lemonadezZ/Pixies#readme"
+  "homepage": "https://github.com/lemonadezZ/Pixies#readme",
+  "devDependencies": {
+    "gulp-uglify": "^2.1.2"
+  }
 }
