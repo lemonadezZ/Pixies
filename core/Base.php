@@ -10,6 +10,9 @@ class Base {
 	static $action=null;
 	static $path=null;
 	static $lastsql="";
+	static $sqls=[];
+	static $start_time="";
+	static $end_time="";
 	function getInstance(){
 		
 	}

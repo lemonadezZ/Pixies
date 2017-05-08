@@ -3,19 +3,22 @@ namespace Core;
 
 //模型
 class Model extends Base {
+     public $pdo; 
     public $table;   
     public $sql;
     public $where="";
     public $group="";
-    public $limit=1;
-    public $offset=0;
+    public $limit="";
+    public $offset="";
     public $database="";
     // public $action;
     public $order=null;
     //alias select *;  
     function __construct(){
         $this->database=self::$conf['db']['database'];
+        $this->pdo=new \PDO('mysql:host='.self::$conf['db']['hostname'].';dbname='.self::$conf['db']['database'], self::$conf['db']['username'],self::$conf['db']['password']);
         // echo "初始化";
+        return $this;
     } 
     function getTablename(){
         $tableName=strtolower(array_pop(explode("\\", get_called_class())));
@@ -68,6 +71,9 @@ class Model extends Base {
         return $this;
     }
     function order($field,$sort='desc'){
+         if($this->order==""){
+            $this->order=" order by ";
+        }
         $this->order=$this->order.' `'.$field.'` '.$sort;
         return $this;
     }
@@ -92,33 +98,42 @@ class Model extends Base {
     }
     //分页这里处理
     function limit($limit=1){
-         $this->limit=(int)$limit;
+         $this->limit=" limit ".(int)$limit;
     }
     //偏移量
     function offset($offset=0){
-         $this->offset=(int)$offset;
+         $this->offset=" offset ".(int)$offset;
     }
     //原始sql查询
     function query($sql){
+        $res=$this->pdo->prepare($sql);
         $this->log($sql);
+        if($r=$res->execute()){
+           return $res->fetchAll(\PDO::FETCH_OBJ);
+        }
+        return $r;
     }
+    // function fetchAll($sql){
+
+    // }
     //组装最新执行的sql
     function get($field="*"){
         //执行的sql
-        $this->sql="select ".$field." from ".$this->getTableName().' '.$this->where.$this->group.' order by '.$this->order.' offset '.(int)$this->offset.' limit '.(int)$this->limit;
-        $this->query($this->sql);
+        $this->sql="select ".$field." from ".$this->getTableName().' '.$this->where.$this->group.$this->order.$this->limit.$this->offset;
+       return  $this->query($this->sql);
     }
     function sql(){
         
     }
-    function __toString(){
-        echo  $this->sql
-        .$this->where.$this->group.' order by '.$this->order.' offset '.(int)$this->offset.' limit '.(int)$this->limit;
+    // function __toString(){
+    //     echo  $this->sql
+    //     .$this->where.$this->group.' order by '.$this->order.' offset '.(int)$this->offset.' limit '.(int)$this->limit;
 
-    }
+    // }
     //应用层sqlmap sql写入日志
     function log($sql){
         self::$logger->log('sql',$sql);
         self::$lastsql=$sql;
+        array_push(self::$sqls,$sql);
     }
 }

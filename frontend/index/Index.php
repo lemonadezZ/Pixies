@@ -20,8 +20,7 @@ class Index extends Controller {
 	// }
 	//@
 	function index(){
-		$user=new \Model\User();
-		$user->where("`id` > 10")->order("aaa")->group("name")->get();
+		$res=(new \Model\User())->where("`id` = 1")->get();
 		$this->assign('title','Page');
 		return $this->display();
 	}

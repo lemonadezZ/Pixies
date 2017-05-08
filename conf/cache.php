@@ -1,4 +1,5 @@
 <?php
+//缓存相关设置
 return [
 	"cache"=>false,						//是否缓存
 	"cache_max"=>'10M',	 				//缓存大小

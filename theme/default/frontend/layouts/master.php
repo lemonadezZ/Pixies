@@ -13,5 +13,13 @@
 <!-- content begin-->
 <?= $this->content ?>
 <!-- content end  -->
+<script>
+<?php 
+    foreach(self::$sqls as $sql){
+        echo 'console.info(\''.$sql.'\');';
+    }
+?>
+
+</script>
 </body>
 </html>

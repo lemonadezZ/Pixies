@@ -1,4 +1,5 @@
 <?php
+//app相关设置
 return [
 	"root"=>__ROOT__,
 	"log_dir"=>__ROOT__.'/log',
