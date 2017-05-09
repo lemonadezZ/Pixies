@@ -5,7 +5,8 @@ use Core\Controller;
 
 class Index extends Controller {
 	function index(){
-		echo "11111111111111111";
+		$this->assign('title','Page');
+		return $this->display();
 	}
 	
 }

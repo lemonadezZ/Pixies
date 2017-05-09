@@ -3,6 +3,7 @@ namespace Core;
 
 class Controller extends Base {
 	public $layouts='layouts/master';
+	public $note="";
 	public $content="";
 	function assign($name,$key=""){
 		$this->$name=$key;
