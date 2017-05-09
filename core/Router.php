@@ -33,6 +33,11 @@ class Router extends Base{
 		}
 		// action
 		$handle=$handler->$action();
+		if(is_null($handle)){
+			if($handler->autorender==true){
+				$handle=$handler->render();
+			}
+		}
 		// action after
 		if(method_exists($handler,$action_after)){
 			$handle=$handler->$action_after();

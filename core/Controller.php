@@ -4,13 +4,21 @@ namespace Core;
 class Controller extends Base {
 	public $layouts='layouts/master';
 	public $note="";
+	public $autorender=false;
 	public $content="";
+	public $user=['name'=>"默认用户名"];
 	function assign($name,$key=""){
 		$this->$name=$key;
 	}
-	function render(){
+	function render($path=null){
 		$view_root=self::$conf['application']['theme_dir'].'/'.self::$conf['application']['theme'];
-		$view_path=$view_root.'/'.self::$path.'.php';
+		if(is_null($path)){
+			$view_path=$view_root.'/'.self::$path.'.php';
+		}else{
+			$view_path=$view_root.'/'.$path.'.php';
+		}
+		// define("__LAYOUTS__",$view_root.'/'.$this->layouts);
+	
 		//渲染主体
 		ob_start();
 		include($view_path);
@@ -27,7 +35,10 @@ class Controller extends Base {
 		
 		return $content;
 	}
-	function display(){
+	function display($path=null){
 		echo $this->render();
+	}
+	function __destruct(){
+		
 	}
 }

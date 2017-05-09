@@ -5,7 +5,7 @@ use Api;
 
 class Index extends \Api\Base {
 	function index(){
-		return $this->fail();
+		return $this->success();
 	}
 	
 }
