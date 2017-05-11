@@ -12,7 +12,7 @@ class Index extends Controller {
         printf( $systemInfo->homepage."<br>");
         printf( $systemInfo->license."<br>");
         printf( $systemInfo->description."<br>");
-		return $this->render();
+
 	}
 	
 }
