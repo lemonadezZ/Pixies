@@ -14,6 +14,10 @@
         <script src="/admin/assets/layouts/layout2/scripts/layout.min.js" type="text/javascript"></script>
         <script src="/admin/assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script>
         <script src="/admin/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+
+          <script src="/dist/js/vendor.js" type="text/javascript"></script>
+          <script src="/dist/js/main.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
+
 </html>

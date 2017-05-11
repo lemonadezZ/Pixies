@@ -16,9 +16,20 @@ class Router extends Base{
 		}
 		$controller=array_pop($p);
 		$this->setController($controller);
+		$module=@$p[1];
+		$this->setModule($module);
 		$namespace=implode('\\',$p);
 		$class=$namespace.'\\'.$controller;
-		$handler=new $class();
+		if(class_exists($class)){
+				$handler=new $class();
+		}else{
+				//log error
+				$log=$_SERVER['HTTP_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				self::$logger->log('error',$log);
+				$handler=new self::$conf['application']['error_class']();
+				return $handler->error();
+		}
+		
 		// actions before
 		if(property_exists($handler,'before')){
 			if(in_array($action,$handler->before[1])){
@@ -32,6 +43,7 @@ class Router extends Base{
 			$handle=$handler->$action_before();
 		}
 		// action
+		$handler->view=new View();
 		$handle=$handler->$action();
 		if(is_null($handle)){
 			if($handler->autorender==true){
@@ -57,6 +69,14 @@ class Router extends Base{
 	}
 	function setController($controller){
 		self::$controller=$controller;
+	}
+	function setModule($module){
+		if($module==""){
+			self::$module=self::$conf['application']['default_module'];
+		}else{
+			self::$module=$module;
+		}
+		
 	}
 	function setNamespace(){
 		

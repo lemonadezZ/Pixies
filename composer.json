@@ -11,6 +11,7 @@
     "psr-4": {
       "Backend\\": "backend/",
 	  "Frontend\\": "frontend/",
+      "Install\\": "install/",
       "Model\\": "model/",
       "Api\\":"api/",
 	  "Core\\":"core/"

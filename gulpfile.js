@@ -8,9 +8,12 @@ gulp.task('default',['style','script'],function () {
 
 gulp.task('script', function() {
     gulp.src([
-		'bower_components/jquery/dist/jquery.js'
+      
+        'bower_components/jquery-pjax/jquery.pjax.js',
+        'bower_components/jquery-ujs/src/rails.js'
     ])
     .pipe(uglify())
+    .pipe(concat('vendor.js'))
     .pipe(
         gulp.dest('public/dist/js')
     )

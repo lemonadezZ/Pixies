@@ -8,11 +8,13 @@ class Base {
 	static $router=null;
 	static $controller=null;
 	static $action=null;
+	static $module=null;
 	static $path=null;
 	static $lastsql="";
 	static $sqls=[];
 	static $start_time="";
 	static $end_time="";
+	static $layouts="layouts/master";
 	function getInstance(){
 		
 	}

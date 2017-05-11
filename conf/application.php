@@ -7,6 +7,10 @@ return [
 	"cache_driver"=>"redis",
 	"debug"=>true,
 	"default_path"=>'frontend/index/index/index',
+	"default_controller"=>'index',
+	"default_action"=>'index',
+	"default_module"=>'frontend',
+	"error_class"=>'\Frontend\Error',
 	"theme_dir"=>__ROOT__.'/theme',
 	"theme"=>'default'
 ];
