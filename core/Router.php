@@ -20,13 +20,15 @@ class Router extends Base{
 		$this->setModule($module);
 		$namespace=implode('\\',$p);
 		$class=$namespace.'\\'.$controller;
+		//echo $class."\r\n";
 		if(class_exists($class)){	
 			$handler=new $class();
 		}else{
 				//log error
-				$log=$_SERVER['SERVER_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-				self::$logger->log('error',$log);
-				$errorHandler=new self::$conf['application']['error_class']();
+				//$log=$_SERVER['SERVER_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				//self::$logger->log('error',$log);
+				$class=self::$conf['application']['error_class'];
+				$errorHandler=new $class();
 				return $errorHandler->error();
 		}
 		

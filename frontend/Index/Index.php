@@ -4,9 +4,9 @@ namespace Frontend\Index;
 use Core\Controller;
 
 class Index extends Controller {
-	function index(){
-		
+	function index(){	
+		return '111';	
 		$this->assign('title','Page');
-		return $this->display();
+	//	return $this->display();
 	}
 }

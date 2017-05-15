@@ -10,9 +10,10 @@ return [
 	"default_controller"=>'index',
 	"default_action"=>'index',
 	"default_module"=>'frontend',
-	"error_class"=>'\Frontend\Error',
+	"error_class"=>'Frontend\Error',
 	"theme_dir"=>__ROOT__.'/theme',
 	"theme"=>'default',
+	"run-model"=>'swoole',
 	"features"=>[
 
 	],//配置特性

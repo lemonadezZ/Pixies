@@ -4,6 +4,9 @@ namespace Core;
 class Application extends Base {
 	function __construct(){
 		self::$start_time=microtime();
+	}
+	function handle(){
+		
 		//初始化配置
 		$this->initConfig();
 		//初始化日志
@@ -15,14 +18,12 @@ class Application extends Base {
 		//初始化响应
 		$this->initResponse();	
 		$this->initCache();
-	}
-	function handle(){
 		$this->initRouter();
 		return self::$router->handle();
 	}
 	function __destruct(){
 		 self::$end_time=microtime();
-		 self::$logger->log('info',"[".$_SERVER['REQUEST_URI'].'] '.(self::$end_time-self::$start_time));
+	//	 self::$logger->log('info',"[".$_SERVER['REQUEST_URI'].'] '.(self::$end_time-self::$start_time));
 		// echo "time：".(microtime()-self::$start_time)."";
 	}
 	function log($segment,$log){

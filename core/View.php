@@ -39,7 +39,7 @@ class View extends Base {
 		return $this->content;
 	}
 	function display($path=null){
-		echo $this->render();
+		return $this->render();
 	}
 	function __destruct(){
 		

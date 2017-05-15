@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+define("__ROOT__",realpath(__DIR__.'/../'));
+define("__PUBLIC__",realpath(__DIR__.'/../public'));
+
+include __ROOT__."/vendor/autoload.php";
+
+$serv = new Swoole\Http\Server("0.0.0.0", 8083);
+$serv->on('Request', function($request, $response) {
+	var_dump($request);
+	$_SERVER["REQUEST_URI"]=$request->server['request_uri'];
+	$_GET =@$request->get;
+    	$_POST =@$request->post;
+    	$_COOKIE =@$request->cookie;
+	$_FILES = @$request->files;
+	$application=new \Core\Application();
+	$response->write($application->handle());
+});
+$serv->start();
+
