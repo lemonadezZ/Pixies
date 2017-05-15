@@ -100,8 +100,7 @@ class Router extends Base{
 			}
 			
 		}
-		self::$path=$path;
-		return $path;
+		return self::$path=explode('?',$path)[0];
 	}
 	function setPath(){
 		

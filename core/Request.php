@@ -12,4 +12,7 @@ class Request extends Base {
         $this->Request=$_REQUEST;
         $this->Server=$_SERVER;
     }
+    public function get($parm){
+        return $this->Get[$parm];
+    }
 }

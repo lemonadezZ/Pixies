@@ -10,7 +10,6 @@ class Base {
 	static $request=null;
 	static $response=null;
 	static $context=null;
-
 	static $controller=null;
 	static $action=null;
 	static $module=null;
@@ -29,7 +28,6 @@ class Base {
 		}
 	}
 	
-
 	function __get($name){
 		$name='\\Core\\'.ucwords($name);
 		return $this->$name=new $name();
