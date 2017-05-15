@@ -20,8 +20,8 @@ class Router extends Base{
 		$this->setModule($module);
 		$namespace=implode('\\',$p);
 		$class=$namespace.'\\'.$controller;
-		if(class_exists($class)){
-				$handler=new $class();
+		if(class_exists($class)){	
+			$handler=new $class();
 		}else{
 				//log error
 				$log=$_SERVER['SERVER_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
