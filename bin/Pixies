@@ -5,16 +5,26 @@ define("__ROOT__",realpath(__DIR__.'/../'));
 define("__PUBLIC__",realpath(__DIR__.'/../public'));
 
 include __ROOT__."/vendor/autoload.php";
+$conf=new Core\Config();
+$pixies = new Swoole\Http\Server($conf->server['servername'], $conf->server['port']);
 
-$serv = new Swoole\Http\Server("0.0.0.0", 8083);
-$serv->on('Request', function($request, $response) {
+$pixies->on('Request', function($request, $response) {
 	$_SERVER["REQUEST_URI"]=$request->server['request_uri'];
+	$file=__PUBLIC__.'/'.$_SERVER["REQUEST_URI"];
+	if(file_exists($file) &&  $_SERVER["REQUEST_URI"]!="/"){
+		return  $response->write(file_get_contents($file));
+	}
 	$_GET =@$request->get;
     	$_POST =@$request->post;
     	$_COOKIE =@$request->cookie;
 	$_FILES = @$request->files;
 	$application=new \Core\Application();
-	$response->write($application->handle());
+	$content=$application->handle();
+	if(empty($content)){
+		$response->write("<!-- empty -->");
+	}else{
+		$response->write($content);
+	}
 });
-$serv->start();
+$pixies->start();
 
