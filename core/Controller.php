@@ -21,7 +21,7 @@ class Controller extends Base {
 		return $this->view->render($path);
 	}
 	function display($path=null){
-		echo $this->render();
+		return $this->render();
 	}
 	function __destruct(){
 		
