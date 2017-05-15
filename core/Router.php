@@ -71,16 +71,16 @@ class Router extends Base{
 		return $handle;
 	}
 	function setAction($action){
-		$this->action=$action;
+		$this->Request->action=$action;
 	}
 	function setController($controller){
-		$this->controller=$controller;
+		$this->Request->controller=$controller;
 	}
 	function setModule($module){
 		if($module==""){
-			$this->module=$this->config->application['default_module'];
+			$this->Request->module=$this->config->application['default_module'];
 		}else{
-			$this->module=$module;
+			$this->Request->module=$module;
 		}
 		
 	}

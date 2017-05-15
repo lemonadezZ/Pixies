@@ -21,19 +21,19 @@ class View extends Base {
 			$view_path=$view_root.'/'.$path.'.php';
 		}
 		// define("__LAYOUTS__",$view_root.'/'.$this->layouts);
-	
 		//渲染主体
 		ob_start();
 		include($view_path);
 		$this->content=ob_get_contents();
 		ob_end_clean();
 		//渲染layouts
-		if(self::$layouts){
+	
+		if($this->Controller->layouts){
 			ob_start();
-			$layouts_path=strtolower($view_root.'/'.self::$module.'/'.self::$layouts.'.php');
+			$layouts_path=strtolower($view_root.'/'.$this->Request->module.'/'.$this->Controller->layouts.'.php');
 			if(file_exists($layouts_path)){
 			}else{
-				$layouts_path=$view_root.'/'.$conf->application['default_module'].'/'.self::$layouts.'.php';
+				$layouts_path=$view_root.'/'.$conf->application['default_module'].'/'.$this->controller->layouts.'.php';
 			}
 			// var_dump($layouts_path);
 			include($layouts_path);

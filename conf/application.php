@@ -15,7 +15,7 @@ return [
 	"theme"=>'default',
 	"run-model"=>'swoole',
 	"features"=>[
-		'route'=>1
+		'route'=>0
 	],//配置特性
 	"extension"=>[
 

@@ -7,6 +7,7 @@ class Controller extends Base {
 	public $autorender=false;
 	public $content="";
 	public $view=null;
+	public $layouts="layouts/master";
 	public $user=['name'=>"默认用户名"];
 	function assign($name,$key=""){
 		if(is_null($this->view)){
