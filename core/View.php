@@ -13,6 +13,8 @@ class View extends Base {
 		$conf=$this->config;
 		$view_root=$conf->application['theme_dir'].'/'.$conf->application['theme'];
 
+		//var_dump($this->Request);
+
 		if(is_null($path)){
 			$view_path=$view_root.'/'.self::$path.'.php';
 		}else{

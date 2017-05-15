@@ -1,4 +1,4 @@
 <?php
 return [
-    '/'=>'frontend/index/index/index'
+	"/test/:name/:id.html"=>"/frontend/index/index"
 ];

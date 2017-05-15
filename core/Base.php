@@ -19,17 +19,15 @@ class Base {
 	static $start_time="";
 	static $end_time="";
 	static $layouts="layouts/master";
-	function getInstance(){
-		if($this->instance==null){
-			$class=__CLASS__;
-			$this->instance=new $class();
-		}else{
-			return $this->instance;
-		}
-	}
+	static $di="";
+
 	
 	function __get($name){
-		$name='\\Core\\'.ucwords($name);
-		return $this->$name=new $name();
+		$di=DI::getInstance();
+		if(property_exists($di,$name)){
+		 	return $di->$name;
+		}
+		//注册到DI树;
+		return $di->register($name);
 	}
 }

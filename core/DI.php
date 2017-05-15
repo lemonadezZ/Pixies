@@ -3,7 +3,19 @@ namespace Core;
 
 //注册树
 class DI {
-    function set($name,$class){
-
+    static $instance=null;
+    static function getInstance(){
+		if(self::$instance==null){
+			$class=__CLASS__;
+			return self::$instance=new $class();
+		}else{
+			return self::$instance;
+		}
+	}
+    //注册
+    static function register($class){
+        $class='\\Core\\'.ucwords($class);
+        $di=DI::getInstance();
+        return $di->$class=new $class();
     }
 }

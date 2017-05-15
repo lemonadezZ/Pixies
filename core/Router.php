@@ -4,6 +4,7 @@ namespace Core;
 class Router extends Base{
 
 	//处理路由
+	use Helper;
 	function handle(){
 		$path=$this->getPath();
 		$p=explode('/',$path);
@@ -24,9 +25,6 @@ class Router extends Base{
 		if(class_exists($class)){	
 			$handler=new $class();
 		}else{
-				//log error
-				//$log=$_SERVER['SERVER_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-				//self::$logger->log('error',$log);
 				$class=$this->config->application['error_class'];
 				$errorHandler=new $class();
 				return $errorHandler->error();
@@ -73,36 +71,57 @@ class Router extends Base{
 		return $handle;
 	}
 	function setAction($action){
-		self::$action=$action;
+		$this->action=$action;
 	}
 	function setController($controller){
-		self::$controller=$controller;
+		$this->controller=$controller;
 	}
 	function setModule($module){
 		if($module==""){
-			self::$module=$this->config->application['default_module'];
+			$this->module=$this->config->application['default_module'];
 		}else{
-			self::$module=$module;
+			$this->module=$module;
 		}
 		
 	}
 	function setNamespace(){
 		
 	}
-	function getPath(){
+	function getPath($path=null){
+		//路由处理
 		if(!isset($_SERVER['REQUEST_URI'])){
 			$path=$this->config->application['default_path'];
 		}else{
-			
 			$path=$_SERVER['REQUEST_URI'];
 			if($path=="/"){
 				$path=$this->config->application['default_path'];
 			}
-			
 		}
-		return self::$path=explode('?',$path)[0];
+
+		$path=self::$path=explode('?',$path)[0];
+		//路由判断
+		switch($this->config->application['features']['route']){
+			case 1:
+			//正则路由
+			$res=self::route($this->config->route,$path);
+			if($res){
+				$path=$res[0];
+				$this->Request->Get=$res[1];
+				break;
+			}else{
+				
+			}
+			default:
+			//默认路由
+			;;
+		}
+		// var_dump($path);
+		$this->setPath($path);
+		return $path;
 	}
-	function setPath(){
-		
+	function setPath($path){
+			$this->Request->Path=$path;
+			self::$path=$path;
+			$this->path=$path;
 	}
 }
