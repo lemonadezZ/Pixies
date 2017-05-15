@@ -3,7 +3,7 @@
 return [
 	"root"=>__ROOT__,
 	"log_dir"=>__ROOT__.'/log',
-	"appName"=>"Poxies",
+	"appName"=>"Pixies",
 	"cache_driver"=>"redis",
 	"debug"=>true,
 	"default_path"=>'frontend/index/index/index',

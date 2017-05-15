@@ -1,7 +1,7 @@
-<?php 
+<?php  
 namespace Core;
 
-class Request extends Base {
+class Context extends Base {
     public $Get=null;
     public $Post=null;
     public $Request=null;

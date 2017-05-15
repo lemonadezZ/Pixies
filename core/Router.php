@@ -24,10 +24,10 @@ class Router extends Base{
 				$handler=new $class();
 		}else{
 				//log error
-				$log=$_SERVER['HTTP_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				$log=$_SERVER['SERVER_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 				self::$logger->log('error',$log);
-				$handler=new self::$conf['application']['error_class']();
-				return $handler->error();
+				$errorHandler=new self::$conf['application']['error_class']();
+				return $errorHandler->error();
 		}
 		
 		// actions before
@@ -44,7 +44,13 @@ class Router extends Base{
 		}
 		// action
 		$handler->view=new View();
-		$handle=$handler->$action();
+		if(method_exists($handler,$action)){
+				$handle=$handler->$action();
+		}else{
+				$errorHandler=new self::$conf['application']['error_class']();
+				return $errorHandler->error();
+		}
+		
 		if(is_null($handle)){
 			if($handler->autorender==true){
 				$handle=$handler->render();

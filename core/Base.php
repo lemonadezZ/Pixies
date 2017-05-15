@@ -6,6 +6,10 @@ class Base {
 	static $logger=null;
 	static $cache=null;
 	static $router=null;
+	static $request=null;
+	static $response=null;
+	static $context=null;
+
 	static $controller=null;
 	static $action=null;
 	static $module=null;
@@ -31,6 +35,15 @@ class Base {
 	}
 	function initRouter(){
 		self::$router=new Router();
+	}
+	function initRequest(){
+		self::$request=new Request();
+	}
+	function initResponse(){
+		self::$response=new Response();
+	}
+	function initContext(){
+		self::$context=new Context();
 	}
 	function initCache(){
 		self::$cache=new Cache();
