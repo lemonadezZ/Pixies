@@ -27,7 +27,7 @@ class Router extends Base{
 				//log error
 				//$log=$_SERVER['SERVER_PROTOCOL'].$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 				//self::$logger->log('error',$log);
-				$class=self::$conf['application']['error_class'];
+				$class=$this->config->application['error_class'];
 				$errorHandler=new $class();
 				return $errorHandler->error();
 		}
@@ -49,7 +49,7 @@ class Router extends Base{
 		if(method_exists($handler,$action)){
 				$handle=$handler->$action();
 		}else{
-				$errorHandler=new self::$conf['application']['error_class']();
+				$errorHandler=new $this->config->application['error_class']();
 				return $errorHandler->error();
 		}
 		
@@ -80,7 +80,7 @@ class Router extends Base{
 	}
 	function setModule($module){
 		if($module==""){
-			self::$module=self::$conf['application']['default_module'];
+			self::$module=$this->config->application['default_module'];
 		}else{
 			self::$module=$module;
 		}
@@ -91,12 +91,12 @@ class Router extends Base{
 	}
 	function getPath(){
 		if(!isset($_SERVER['REQUEST_URI'])){
-			$path=self::$conf['application']['default_path'];
+			$path=$this->config->application['default_path'];
 		}else{
 			
 			$path=$_SERVER['REQUEST_URI'];
 			if($path=="/"){
-				$path=self::$conf['application']['default_path'];
+				$path=$this->config->application['default_path'];
 			}
 			
 		}

@@ -1,14 +1,13 @@
 <?php
 namespace Backend;
 
-use Core\Controller;
+use \Backend\Base;
 
-
-class User extends Controller {
+class User extends Base {
 	use \Core\Helper;
 	function login(){
         self::$layouts=false;
-		$this->assign('title','用户登录');
+		$this->assign('title','后台-用户登录');
 		return $this->render();
 	}
     function dologin(){

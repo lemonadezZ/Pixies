@@ -2,6 +2,7 @@
 namespace Core;
 
 class Base {
+	public $container;
 	static $conf=[];
 	static $logger=null;
 	static $cache=null;
@@ -20,32 +21,17 @@ class Base {
 	static $end_time="";
 	static $layouts="layouts/master";
 	function getInstance(){
-		
+		if($this->instance==null){
+			$class=__CLASS__;
+			$this->instance=new $class();
+		}else{
+			return $this->instance;
+		}
 	}
-	function initConfig(){
-		self::loadConfig();
-	}
-	function loadConfig(){
-		self::$conf['application']=include_once(__ROOT__.'/conf/'.'application.php');
-		self::$conf['db']=include_once(__ROOT__.'/conf/'.'db.php');
-		self::$conf['cache']=include_once(__ROOT__.'/conf/'.'cache.php');
-	}
-	function initLogger(){
-		self::$logger=new Logger();
-	}
-	function initRouter(){
-		self::$router=new Router();
-	}
-	function initRequest(){
-		self::$request=new Request();
-	}
-	function initResponse(){
-		self::$response=new Response();
-	}
-	function initContext(){
-		self::$context=new Context();
-	}
-	function initCache(){
-		self::$cache=new Cache();
+	
+
+	function __get($name){
+		$name='\\Core\\'.ucwords($name);
+		return $this->$name=new $name();
 	}
 }

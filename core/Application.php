@@ -8,18 +8,18 @@ class Application extends Base {
 	function handle(){
 		
 		//初始化配置
-		$this->initConfig();
-		//初始化日志
-		$this->initLogger();
-		//初始化请求
-		$this->initRequest();
-		//初始化上下文
-		$this->initContext();
-		//初始化响应
-		$this->initResponse();	
-		$this->initCache();
-		$this->initRouter();
-		return self::$router->handle();
+		// $this->initConfig();
+		// //初始化日志
+		// $this->initLogger();
+		// //初始化请求
+		// $this->initRequest();
+		// //初始化上下文
+		// $this->initContext();
+		// //初始化响应
+		// $this->initResponse();	
+		// $this->initCache();
+		// $this->initRouter();
+		return $this->router->handle();
 	}
 	function __destruct(){
 		 self::$end_time=microtime();

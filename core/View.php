@@ -10,7 +10,9 @@ class View extends Base {
 		$this->$name=$key;
 	}
 	function render($path=null){
-		$view_root=self::$conf['application']['theme_dir'].'/'.self::$conf['application']['theme'];
+		$conf=$this->config;
+		$view_root=$conf->application['theme_dir'].'/'.$conf->application['theme'];
+
 		if(is_null($path)){
 			$view_path=$view_root.'/'.self::$path.'.php';
 		}else{
@@ -26,11 +28,12 @@ class View extends Base {
 		//渲染layouts
 		if(self::$layouts){
 			ob_start();
-			$layouts_path=$view_root.'/'.self::$module.'/'.self::$layouts.'.php';
+			$layouts_path=strtolower($view_root.'/'.self::$module.'/'.self::$layouts.'.php');
 			if(file_exists($layouts_path)){
 			}else{
-				$layouts_path=$view_root.'/'.self::$conf['application']['default_module'].'/'.self::$layouts.'.php';
+				$layouts_path=$view_root.'/'.$conf->application['default_module'].'/'.self::$layouts.'.php';
 			}
+			// var_dump($layouts_path);
 			include($layouts_path);
 			$this->content=ob_get_contents();
 			ob_end_clean();
