@@ -8,7 +8,6 @@ include __ROOT__."/vendor/autoload.php";
 
 $serv = new Swoole\Http\Server("0.0.0.0", 8083);
 $serv->on('Request', function($request, $response) {
-	var_dump($request);
 	$_SERVER["REQUEST_URI"]=$request->server['request_uri'];
 	$_GET =@$request->get;
     	$_POST =@$request->post;
