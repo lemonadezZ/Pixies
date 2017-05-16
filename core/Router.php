@@ -121,7 +121,7 @@ class Router extends Base{
 	}
 	function setPath($path){
 			$this->Request->Path=$path;
-			self::$path=$path;
-			$this->path=$path;
+			//self::$path=$path;
+			//$this->path=$path;
 	}
 }
