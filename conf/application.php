@@ -13,11 +13,12 @@ return [
 	"error_class"=>'Frontend\Error',
 	"theme_dir"=>__ROOT__.'/theme',
 	"theme"=>'default',
-	"run-model"=>'swoole',
+	"run-model"=>'swoole', 		//运行模式 php-fpm build-in swooke and so on
 	"features"=>[
-		'route'=>0
+		'route'=>0,     		// 路由特性
+		'mq'=>'rabbitmq',		// TODO 消息队列特性 
+		'pool'=>0       		// TODO 连接池特性
 	],//配置特性
 	"extension"=>[
-
 	],//配置扩展
 ];
