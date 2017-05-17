@@ -20,4 +20,14 @@ class DI {
         return $di->$class=new $class($para);
     }
     //注销
+    function __get($name){
+		$di=DI::getInstance();
+		//TODO 这里比较坑点
+		$class='\\Core\\'.ucwords($name);
+		if(property_exists($di,$class)){
+		 	return $di->$class;
+		}
+		//注册到DI树;
+		return $di->register($name);
+	}
 }

@@ -1,3 +1,4 @@
 @echo off
+REM composer install 
 cd  public 
-php -S localhost:8082
+php -S 0.0.0.0:8082

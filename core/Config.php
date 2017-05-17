@@ -8,6 +8,7 @@ class Config {
 		$this->config=@include __ROOT__.'/conf/'.'cache.php';
         $this->route=@include __ROOT__.'/conf/'.'route.php';
 		$this->server=@include __ROOT__.'/conf/'.'server.php';
+        $this->mq=@include __ROOT__.'/conf/'.'mq.php';
     }
     
 }
