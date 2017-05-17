@@ -8,7 +8,7 @@ trait  Helper {
     function imageUrl($url){
         return $url;
     }
-    static function success($data="",$code=0,$msg="success"){
+    static function success($data="",$msg="success",$code=0){
 		return self::_return([
 			'code'=>$code,
 			'msg'=>$msg,

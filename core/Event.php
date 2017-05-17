@@ -6,6 +6,10 @@ class Event extends Base {
     public function on($event=null,$callback){
 
     }
+    //取消订阅
+    public function off($event=null,$callback){
+
+    }
     //触发事件
     public function trigger($event=null,$data=[]){
 

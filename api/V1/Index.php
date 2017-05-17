@@ -5,7 +5,6 @@ use Api;
 
 class Index extends \Api\Base {
 	function index(){
-		return $this->success();
+		return $this->success('this is real');
 	}
-	
 }
