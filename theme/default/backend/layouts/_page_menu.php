@@ -53,8 +53,8 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="#" class="nav-link ">
-                                        <span class="title">应用</span>
+                                    <a href="/backend/menu/index/index" class="nav-link ">
+                                        <span class="title">菜单管理</span>
                                     </a>
                                 </li>
                                  <li class="nav-item  ">

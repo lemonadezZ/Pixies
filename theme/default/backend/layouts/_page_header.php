@@ -7,7 +7,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic | Blank Page Layout</title>
+        <title><?= $this->page->title; ?></title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -29,6 +29,7 @@
         <link href="/admin/assets/layouts/layout2/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <script src="/admin/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">

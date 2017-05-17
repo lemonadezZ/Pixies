@@ -8,16 +8,24 @@ class Request extends Base {
     public $Path=null;
     public $Server=null;
     public $is_ajax=null;//判断是否为ajax请求
+    public $is_pjax=false;//判断是否为ajax请求
 
     public function __construct(){
         $this->Get=$_GET;
         $this->Post=$_POST;
         $this->Request=$_REQUEST;
         $this->Server=$_SERVER;
+        $this->is_pjax=$this->get('_pjax');
+
+
+    //    exit();
+    //     if(){
+
+    //     }
     }
 
     public function get($parm){
-        return $this->Get[$parm];
+        return isset($this->Request[$parm])?$this->Request[$parm]:"";
     }
     public function __set($name,$value){
             //设置

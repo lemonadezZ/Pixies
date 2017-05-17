@@ -2,6 +2,7 @@
 namespace Core;
 
 class View extends Base {
+	use \Core\Helper;
 	public $note="";
 	public $autorender=false;
 	public $content="";
@@ -27,18 +28,19 @@ class View extends Base {
 		$this->content=ob_get_contents();
 		ob_end_clean();
 		//渲染layouts
-	
 		if($this->Controller->layouts){
-			ob_start();
-			$layouts_path=strtolower($view_root.'/'.$this->Request->module.'/'.$this->Controller->layouts.'.php');
-			if(file_exists($layouts_path)){
-			}else{
-				$layouts_path=$view_root.'/'.$conf->application['default_module'].'/'.$this->controller->layouts.'.php';
+			if(!$this->Request->is_pjax){
+				ob_start();
+				$layouts_path=strtolower($view_root.'/'.$this->Request->module.'/'.$this->Controller->layouts.'.php');
+				if(file_exists($layouts_path)){
+				}else{
+					$layouts_path=$view_root.'/'.$conf->application['default_module'].'/'.$this->controller->layouts.'.php';
+				}
+				// var_dump($layouts_path);
+				include($layouts_path);
+				$this->content=ob_get_contents();
+				ob_end_clean();		
 			}
-			// var_dump($layouts_path);
-			include($layouts_path);
-			$this->content=ob_get_contents();
-			ob_end_clean();
 		}
 		
 		return $this->content;

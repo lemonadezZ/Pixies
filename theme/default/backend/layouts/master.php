@@ -10,8 +10,7 @@
                     <?php @include('_page_menu.php'); ?>
             </div>
             <div class="page-content-wrapper">
-                <div class="page-content">
-
+                <div class="page-content" id="pjax-container">
                      <?= $this->content; ?>
                 </div>
             </div>
