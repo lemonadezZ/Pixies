@@ -27,4 +27,12 @@ class Controller extends Base {
 	function __destruct(){
 		
 	}
+	//重定向
+	function  redirect($path=""){
+			return header('Location: '.$path);
+	}
+	//内部跳转
+	function forward($path="/",$para=""){
+			return $this->dispatcher->to($path,$para);
+	}
 }

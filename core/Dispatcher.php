@@ -9,7 +9,8 @@ class Dispatcher extends Base {
     }
     function to($path,$context){
         //写入文件
-        echo "同步处理\n";
+        $_SERVER['REQUEST_URI']=$path;
+        return $this->router->handle();
         //调度到指定位置
     }
 }
