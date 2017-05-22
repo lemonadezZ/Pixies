@@ -3,9 +3,13 @@ namespace Core;
 
 //模型
 class Model extends Base {
-     public $pdo; 
+    public $pdo; 
+    public $connect; 
     public $table;   
     public $sql;
+    public $para=[];
+    public $lastsql;
+    public $sqls=[];
     public $where="";
     public $group="";
     public $limit="";
@@ -13,10 +17,17 @@ class Model extends Base {
     public $database="";
     // public $action;
     public $order=null;
+
     //alias select *;  
     function __construct(){
-        $this->database=self::$conf['db']['database'];
-        $this->pdo=new \PDO('mysql:host='.self::$conf['db']['hostname'].';dbname='.self::$conf['db']['database'], self::$conf['db']['username'],self::$conf['db']['password']);
+        // $connect=$this->Pool->getConnect(
+
+        // );
+        //初始化连接池
+        $this->connect=new \PDO('mysql:host='.$this->config->db['hostname'].';dbname='.$this->config->db['database'], $this->config->db['username'],$this->config->db['password']);
+
+        $this->database=$this->config->db['database'];
+        
         // echo "初始化";
         return $this;
     } 
@@ -102,13 +113,18 @@ class Model extends Base {
     }
     //偏移量
     function offset($offset=0){
-         $this->offset=" offset ".(int)$offset;
+         $this->offset="offset ".(int)$offset;
+    }
+    function para($para=[]){
+        $this->para=$para;
+        return $this;
     }
     //原始sql查询
     function query($sql){
-        $res=$this->pdo->prepare($sql);
+        $res=$this->connect->prepare($sql);
         $this->log($sql);
-        if($r=$res->execute()){
+
+        if($r=$res->execute($this->para)){
            return $res->fetchAll(\PDO::FETCH_OBJ);
         }
         return $r;
@@ -132,8 +148,12 @@ class Model extends Base {
     // }
     //应用层sqlmap sql写入日志
     function log($sql){
-        self::$logger->log('sql',$sql);
-        self::$lastsql=$sql;
-        array_push(self::$sqls,$sql);
+        $this->logger->log('sql',$sql);
+        $this->lastsql=$sql;
+        array_push($this->sqls,$sql);
+    }
+    function __destruct(){
+        //释放当前 链接
+        $this->Pool('db','10')->release($this->connect);
     }
 }

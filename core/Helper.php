@@ -53,4 +53,14 @@ trait  Helper {
 		return false;
 	}
 
+    static $instance=null;
+    static function getInstance(){
+		if(self::$instance==null){
+			$class=__CLASS__;
+			return self::$instance=new $class();
+		}else{
+			return self::$instance;
+		}
+	}
+
 }

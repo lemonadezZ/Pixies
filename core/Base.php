@@ -14,8 +14,7 @@ class Base {
 	static $action=null;
 	static $module=null;
 	static $path=null;
-	static $lastsql="";
-	static $sqls=[];
+
 	static $start_time="";
 	static $end_time="";
 
@@ -36,8 +35,8 @@ class Base {
 		return $di->register($name);
 	}
 	//调用不存在的DI;
-	function __call($method,$para){
-		$di=DI::getInstance();
+	function __call($name,$para){
+		$di=DI::getInstance($para);
 		if(property_exists($di,$name)){
 		 	return $di->$name;
 		}

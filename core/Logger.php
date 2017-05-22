@@ -8,11 +8,11 @@ class Logger extends Base {
 	function info($log){
 		
 	}
-	static function log($segment,$log){
+	function log($segment,$log){
 		$time=time();
 		$t=date('Y-m-d H:i:s',$time);
         $rid=$_SERVER['REQUEST_TIME_FLOAT'];
-		$file_dir=Base::$conf['application']['log_dir'].'/'.$segment;
+		$file_dir=$this->config->application['log_dir'].'/'.$segment;
 		$file_path=$file_dir.'/'.date('Y-m-d').'.log';
 		// check dir
 		if(!file_exists($file_dir)){

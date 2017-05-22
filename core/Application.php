@@ -6,7 +6,7 @@ class Application extends Base {
 		self::$start_time=microtime();
 	}
 	function handle(){
-		
+		//应用启动 初始化连接池  DB连接池 mysql连接池 mq连接池 ==
 		//初始化配置
 		// $this->initConfig();
 		// //初始化日志
